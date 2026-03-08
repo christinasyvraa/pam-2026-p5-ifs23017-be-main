@@ -2,7 +2,7 @@
 #@BaseUrl = https://pam-2026-p5-ifs23017-be.delcom.org:8080
 #@BaseUrl = https://pam-2026-p5-ifs23017-be.cipaa.fun:8080
 #@BaseUrl = http://pam-2026-p5-ifs23017-be.cipaa.fun:8080
-@BaseUrl = http://127.0.0.1:8001
+@BaseUrl = https://pam-2026-p5-ifs23017-be-main.cipaa.fun:8080/
 
 ### ---------------------------------------
 ## Auth
@@ -42,8 +42,10 @@ Content-Type: application/json
 }
 
 > {%
-    client.global.set("authToken", response.body.data.authToken);
-    client.global.set("refreshToken", response.body.data.refreshToken);
+    if (response.status === 200 && response.body && response.body.data) {
+        client.global.set("authToken", response.body.data.authToken);
+        client.global.set("refreshToken", response.body.data.refreshToken);
+    }
 %}
 
 ### Keluar dari layanan (skip run)
@@ -65,8 +67,10 @@ Content-Type: application/json
 }
 
 > {%
-    client.global.set("authToken", response.body.data.authToken);
-    client.global.set("refreshToken", response.body.data.refreshToken);
+    if (response.status === 200 && response.body && response.body.data) {
+        client.global.set("authToken", response.body.data.authToken);
+        client.global.set("refreshToken", response.body.data.refreshToken);
+    }
 %}
 
 ### ---------------------------------------
@@ -80,7 +84,9 @@ Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 > {%
-    client.global.set("userId", response.body.data.user.id);
+    if (response.status === 200 && response.body && response.body.data && response.body.data.user) {
+        client.global.set("userId", response.body.data.user.id);
+    }
 %}
 
 ### Mengubah informasi akun
@@ -106,7 +112,9 @@ Content-Type: application/json
 }
 
 > {%
-    client.global.set("testerPassword", client.global.get("testerNewPassword"));
+    if (response.status === 200) {
+        client.global.set("testerPassword", client.global.get("testerNewPassword"));
+    }
 %}
 
 ### Login ulang (token lama tidak berlaku setelah ganti password)
@@ -120,8 +128,10 @@ Content-Type: application/json
 }
 
 > {%
-    client.global.set("authToken", response.body.data.authToken);
-    client.global.set("refreshToken", response.body.data.refreshToken);
+    if (response.status === 200 && response.body && response.body.data) {
+        client.global.set("authToken", response.body.data.authToken);
+        client.global.set("refreshToken", response.body.data.refreshToken);
+    }
 %}
 
 ### Mengubah photo profile
@@ -168,7 +178,9 @@ Content-Type: application/json
 }
 
 > {%
-    client.global.set("todoId", response.body.data.todoId);
+    if (response.status === 200 && response.body && response.body.data) {
+        client.global.set("todoId", response.body.data.todoId);
+    }
 %}
 
 ### Mengambil todo dengan id
