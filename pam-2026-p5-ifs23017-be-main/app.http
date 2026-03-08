@@ -1,7 +1,7 @@
 ## Global Variabel
 #@BaseUrl = https://pam-2026-p5-ifs23017-be.delcom.org:8080
 #@BaseUrl = https://pam-2026-p5-ifs23017-be.cipaa.fun:8080
-@BaseUrl = http://127.0.0.1:8001
+@BaseUrl = https://pam-2026-p5-ifs23017-be-main.cipaa.fun:8080
 
 ### ---------------------------------------
 ## Auth
