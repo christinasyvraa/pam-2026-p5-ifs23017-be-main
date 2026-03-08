@@ -1,0 +1,66 @@
+Starting a Gradle Daemon, 2 busy and 1 incompatible and 1 stopped Daemons could not be reused, use --status for details
+> Task :checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :compileKotlin UP-TO-DATE
+> Task :compileJava NO-SOURCE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+
+> Task :run
+2026-03-08 17:09:15.047 [main] INFO  Application - Autoreload is disabled because the development mode is off.
+2026-03-08 17:09:19.655 [main] INFO  Exposed - Preparing create tables statements took 198ms
+2026-03-08 17:09:19.710 [main] INFO  Exposed - Executing create tables statements took 54ms
+2026-03-08 17:09:19.830 [main] INFO  Exposed - Extracting table columns took 120ms
+2026-03-08 17:09:19.888 [main] INFO  Exposed - Extracting primary keys took 57ms
+2026-03-08 17:09:20.042 [main] INFO  Exposed - Extracting column constraints took 139ms
+2026-03-08 17:09:20.042 [main] INFO  Exposed - Preparing alter table statements took 332ms
+2026-03-08 17:09:20.045 [main] INFO  Exposed - Executing alter table statements took 2ms
+2026-03-08 17:09:20.108 [main] INFO  Exposed - Checking mapping consistence took 63ms
+2026-03-08 17:09:20.342 [main] INFO  Application - Application started in 6.199 seconds.
+Exception in thread "main" java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:522)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.netBind(ServerSocketChannelImpl.java:335)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:297)
+	at io.netty.channel.socket.nio.NioServerSocketChannel.doBind(NioServerSocketChannel.java:148)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.bind(AbstractChannel.java:434)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.bind(DefaultChannelPipeline.java:1353)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeBind(AbstractChannelHandlerContext.java:492)
+	at io.netty.channel.AbstractChannelHandlerContext.bind(AbstractChannelHandlerContext.java:471)
+	at io.netty.channel.DefaultChannelPipeline.bind(DefaultChannelPipeline.java:994)
+	at io.netty.channel.Channel.bind(Channel.java:302)
+	at io.netty.bootstrap.AbstractBootstrap$2.run(AbstractBootstrap.java:384)
+	at io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:148)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:141)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:535)
+	at io.netty.channel.SingleThreadIoEventLoop.run(SingleThreadIoEventLoop.java:201)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:1195)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+	Suppressed: java.util.concurrent.CompletionException: Rethrowing promise failure cause
+		at io.netty.util.concurrent.DefaultPromise.rethrowIfFailed(DefaultPromise.java:686)
+		at io.netty.util.concurrent.DefaultPromise.sync(DefaultPromise.java:420)
+		at io.netty.channel.DefaultChannelPromise.sync(DefaultChannelPromise.java:119)
+		at io.netty.channel.DefaultChannelPromise.sync(DefaultChannelPromise.java:30)
+		at io.ktor.server.netty.NettyApplicationEngine.start(NettyApplicationEngine.kt:255)
+		at io.ktor.server.netty.NettyApplicationEngine.start(NettyApplicationEngine.kt:39)
+		at io.ktor.server.engine.EmbeddedServer.start(EmbeddedServerJvm.kt:335)
+		at io.ktor.server.netty.EngineMain.main(EngineMain.kt:25)
+		at org.delcom.ApplicationKt.main(Application.kt:31)
+
+> Task :run FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':run'.
+> Process 'command 'D:\Document\SEMESTER 6\PAM\jdk-25.0.2\bin\java.exe'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 56s
+3 actionable tasks: 1 executed, 2 up-to-date
