@@ -32,8 +32,8 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
-
-    val jwtSecret = environment.config.property("ktor.jwt.secret").getString()
+    val jwtSecret = environment.config.property("ktor.jwt.secret").getString().trim()
+        .ifEmpty { "dev-secret-change-me" }
 
     install(Authentication) {
         jwt(JWTConstants.NAME) {

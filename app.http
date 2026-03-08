@@ -1,10 +1,22 @@
 ## Global Variabel
 #@BaseUrl = https://pam-2026-p5-ifs23017-be.delcom.org:8080
+#@BaseUrl = https://pam-2026-p5-ifs23017-be.cipaa.fun:8080
 @BaseUrl = http://127.0.0.1:8000
 
 ### ---------------------------------------
 ## Auth
 ### ---------------------------------------
+
+### Inisialisasi kredensial uji (selalu unik tiap Run All)
+# @name InitTestVars
+GET {{BaseUrl}}/
+Content-Type: application/json
+
+> {%
+    const suffix = Date.now().toString();
+    client.global.set("testerUsername", "tester_" + suffix);
+    client.global.set("testerPassword", "tester");
+%}
 
 ### Melakukan pendaftaran
 # @name PostRegister
@@ -13,8 +25,8 @@ Content-Type: application/json
 
 {
   "name": "Tester",
-  "username": "tester",
-  "password": "tester"
+  "username": "{{testerUsername}}",
+  "password": "{{testerPassword}}"
 }
 
 ### Masuk ke layanan
@@ -23,8 +35,8 @@ POST {{BaseUrl}}/auth/login
 Content-Type: application/json
 
 {
-  "username": "tester",
-  "password": "tester"
+  "username": "{{testerUsername}}",
+  "password": "{{testerPassword}}"
 }
 
 > {%
@@ -46,8 +58,8 @@ POST {{BaseUrl}}/auth/login
 Content-Type: application/json
 
 {
-  "username": "tester",
-  "password": "tester"
+  "username": "{{testerUsername}}",
+  "password": "{{testerPassword}}"
 }
 
 > {%
@@ -77,7 +89,7 @@ Content-Type: application/json
 
 {
   "name": "Tester Update",
-  "username": "tester"
+  "username": "{{testerUsername}}"
 }
 
 ### Mengubah kata sandi akun
@@ -87,8 +99,8 @@ Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-  "newPassword": "tester",
-  "password": "tester"
+  "newPassword": "{{testerPassword}}",
+  "password": "{{testerPassword}}"
 }
 
 ### Mengubah photo profile
