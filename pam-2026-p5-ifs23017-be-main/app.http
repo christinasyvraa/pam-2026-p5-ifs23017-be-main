@@ -1,7 +1,8 @@
 ## Global Variabel
 #@BaseUrl = https://pam-2026-p5-ifs23017-be.delcom.org:8080
 #@BaseUrl = https://pam-2026-p5-ifs23017-be.cipaa.fun:8080
-@BaseUrl = https://pam-2026-p5-ifs23017-be-main.cipaa.fun:8080
+#@BaseUrl = http://pam-2026-p5-ifs23017-be.cipaa.fun:8080
+@BaseUrl = http://127.0.0.1:8001
 
 ### ---------------------------------------
 ## Auth
@@ -15,7 +16,8 @@ Content-Type: application/json
 > {%
     const suffix = Date.now().toString();
     client.global.set("testerUsername", "tester_" + suffix);
-    client.global.set("testerPassword", "tester");
+    client.global.set("testerPassword", "tester123");
+    client.global.set("testerNewPassword", "tester456");
 %}
 
 ### Melakukan pendaftaran
@@ -99,9 +101,28 @@ Authorization: Bearer {{authToken}}
 Content-Type: application/json
 
 {
-  "newPassword": "{{testerPassword}}",
+  "newPassword": "{{testerNewPassword}}",
   "password": "{{testerPassword}}"
 }
+
+> {%
+    client.global.set("testerPassword", client.global.get("testerNewPassword"));
+%}
+
+### Login ulang (token lama tidak berlaku setelah ganti password)
+# @name PostLoginAfterPasswordChange
+POST {{BaseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "{{testerUsername}}",
+  "password": "{{testerPassword}}"
+}
+
+> {%
+    client.global.set("authToken", response.body.data.authToken);
+    client.global.set("refreshToken", response.body.data.refreshToken);
+%}
 
 ### Mengubah photo profile
 # @name PutUserMePhoto
