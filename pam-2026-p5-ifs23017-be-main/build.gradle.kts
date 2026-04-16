@@ -9,11 +9,11 @@ plugins {
     kotlin("plugin.serialization") version "2.3.0"
 }
 
-group = "org.delcom"
+group = "org.ifs23017"
 version = "0.0.1"
 
 application {
-    mainClass = "org.delcom.ApplicationKt"
+    mainClass = "org.ifs23017.ApplicationKt"
 }
 
 dependencies {
